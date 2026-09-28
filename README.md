@@ -1,6 +1,6 @@
 # trading-simulator
 
-[![CI](https://github.com/OWNER/trading-simulator/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/trading-simulator/actions/workflows/ci.yml)
+[![CI](https://github.com/Guerano/trading-simulator/actions/workflows/ci.yml/badge.svg)](https://github.com/Guerano/trading-simulator/actions/workflows/ci.yml)
 
 A trading simulator written in Rust. It executes fictitious orders against **live market data**
 (paper trading) and, later, replays **historical data** deterministically so that automated
@@ -43,7 +43,7 @@ cargo test --workspace
 ```
 
 Pre-built binaries for Windows and Linux are attached to each
-[GitHub release](https://github.com/OWNER/trading-simulator/releases).
+[GitHub release](https://github.com/Guerano/trading-simulator/releases).
 
 ## Documentation
 
@@ -53,6 +53,11 @@ Pre-built binaries for Windows and Linux are attached to each
 
 ## Contributing
 
-GitHub Flow: one feature per branch and pull request, green CI required, squash merge.
-Commit messages and pull request titles follow [Conventional Commits](https://www.conventionalcommits.org/);
+GitHub Flow: one feature per branch and pull request, green CI required. Branches are rebased
+onto `main`, then merged with a merge commit. Commit messages and pull request titles follow [Conventional Commits](https://www.conventionalcommits.org/);
 versions follow [Semantic Versioning](https://semver.org/).
+
+## License
+
+Licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or
+[MIT license](LICENSE-MIT), at your option.

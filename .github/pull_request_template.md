@@ -9,6 +9,7 @@
 
 ## Checklist
 
+- [ ] Branch rebased onto `main`; every commit follows Conventional Commits
 - [ ] Title follows Conventional Commits (`feat:`, `fix:`, `docs:`, `refactor:`, `test:`, `ci:`, `chore:`)
 - [ ] Design document committed and up to date (features only)
 - [ ] `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` pass locally

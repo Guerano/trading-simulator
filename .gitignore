@@ -1,0 +1,28 @@
+# Build output
+/target/
+
+# Local, non-versioned notes and settings
+CLAUDE.local.md
+.claude/settings.local.json
+
+# Local data (recordings, databases, downloaded history)
+/data/
+*.sqlite
+*.sqlite3
+*.db
+*.parquet
+
+# Secrets and environment
+.env
+.env.*
+
+# Coverage
+lcov.info
+*.profraw
+
+# Editors / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db

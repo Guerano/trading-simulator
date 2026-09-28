@@ -14,10 +14,21 @@ env:
   RUSTFLAGS: -D warnings
 
 jobs:
+  detect:
+    name: detect workspace
+    runs-on: ubuntu-latest
+    outputs:
+      cargo: ${{ steps.check.outputs.cargo }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: check
+        run: echo "cargo=$([ -f Cargo.toml ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
   check:
     name: fmt / clippy / test (${{ matrix.os }})
     # Skipped until the Cargo workspace exists.
-    if: hashFiles('Cargo.toml') != ''
+    needs: detect
+    if: needs.detect.outputs.cargo == 'true'
     strategy:
       fail-fast: false
       matrix:
@@ -35,3 +46,15 @@ jobs:
         run: cargo clippy --workspace --all-targets --locked -- -D warnings
       - name: Test
         run: cargo test --workspace --locked
+
+  # Single required status check for branch protection: passes when every
+  # upstream job succeeded or was skipped.
+  ci:
+    name: ci
+    needs: [detect, check]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1
+      - run: echo ok

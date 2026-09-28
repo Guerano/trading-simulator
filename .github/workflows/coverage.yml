@@ -13,9 +13,21 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
+  detect:
+    name: detect workspace
+    runs-on: ubuntu-latest
+    outputs:
+      cargo: ${{ steps.check.outputs.cargo }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: check
+        run: echo "cargo=$([ -f Cargo.toml ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
   coverage:
     name: llvm-cov (non-blocking)
-    if: hashFiles('Cargo.toml') != ''
+    # Skipped until the Cargo workspace exists.
+    needs: detect
+    if: needs.detect.outputs.cargo == 'true'
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
